@@ -1,20 +1,5 @@
-import { Client, GroupNotification, LocalAuth, Message } from "whatsapp-web.js";
-import Qrcode from "qrcode-terminal";
+import { Sistema } from "./sistema";
 
-const bot = new Client({
-  authStrategy: new LocalAuth(),
-});
+const sistema = new Sistema(1000);
 
-bot.on("qr", (qr: string) => {
-  Qrcode.generate(qr, { small: true });
-});
-
-bot.on("message", (message: Message) => {
-  console.log(`Voce recebeu uma mensagem de ${message.from}: ${message.body}`);
-});
-
-bot.on("ready", () => {
-  console.log("Bot conectado.");
-});
-
-bot.initialize();
+sistema.executar();
