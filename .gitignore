@@ -145,4 +145,7 @@ dist
 
 .*
 
+# arquivos de media
+src/media/*
+
 package-lock.json

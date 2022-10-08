@@ -1,10 +1,7 @@
 import { Client, LocalAuth, Message } from "whatsapp-web.js";
 import Qrcode from "qrcode-terminal";
-
-interface MensagemRecebida {
-  from: string;
-  message: Message;
-}
+import { IMensagemRecebida } from "./interfaces/IMensagemRecebida";
+import { IEnvioMensagem } from "./interfaces/IEnvioMensagem";
 
 function delay(timeout: number) {
   return new Promise((resolve) => {
@@ -12,9 +9,9 @@ function delay(timeout: number) {
   });
 }
 
-export class Sistema {
+export class BotJS {
   private timeout: number;
-  private listaMensagens: MensagemRecebida[] = [];
+  private listaMensagens: IMensagemRecebida[] = [];
   private bot: Client;
   constructor(timeout: number = 5000) {
     this.timeout = timeout;
@@ -25,6 +22,11 @@ export class Sistema {
   public async executar() {
     await this.bot.initialize();
     this.processamento();
+  }
+
+  public async enviar(msg: IEnvioMensagem) {
+    msg.injetarBOT(this.bot);
+    msg.enviar();
   }
 
   private async processamento() {
