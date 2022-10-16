@@ -1,5 +1,3 @@
-import { Client } from "whatsapp-web.js";
-import { IEnvioMensagem } from "../interfaces/IEnvioMensagem";
 import { BaseEnvio } from "./baseEnvio";
 
 export class EnvioMensagemTexto extends BaseEnvio {
