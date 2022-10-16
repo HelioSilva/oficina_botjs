@@ -2,6 +2,7 @@ import { Client, LocalAuth, Message } from "whatsapp-web.js";
 import Qrcode from "qrcode-terminal";
 import { IMensagemRecebida } from "./interfaces/IMensagemRecebida";
 import { IEnvioMensagem } from "./interfaces/IEnvioMensagem";
+import { PATH_CHROME } from "../utils/constantes";
 
 function delay(timeout: number) {
   return new Promise((resolve) => {
@@ -10,11 +11,9 @@ function delay(timeout: number) {
 }
 
 export class BotJS {
-  private timeout: number;
   private listaMensagens: IMensagemRecebida[] = [];
   private bot: Client;
-  constructor(timeout: number = 5000) {
-    this.timeout = timeout;
+  constructor(private params: { timeout?: number; useChrome?: boolean }) {
     this.bot = this.criarBot();
     this.inicializar();
   }
@@ -40,12 +39,15 @@ export class BotJS {
       }
       console.log("Caixa de mensagem: " + this.listaMensagens.length);
 
-      await delay(this.timeout);
+      await delay(this.params.timeout ? this.params.timeout : 5000);
     }
   }
 
   private criarBot(): Client {
     return new Client({
+      puppeteer: {
+        executablePath: this.params.useChrome ? PATH_CHROME : undefined,
+      },
       authStrategy: new LocalAuth(),
     });
   }
