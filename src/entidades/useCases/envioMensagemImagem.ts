@@ -7,6 +7,7 @@ export class EnvioMensagemImagem extends BaseEnvio {
       para: string;
       mensagem?: string;
       path: string;
+      FromURL?: boolean;
       AsDocument?: boolean;
       AsSticker?: boolean;
     }
@@ -15,7 +16,9 @@ export class EnvioMensagemImagem extends BaseEnvio {
   }
 
   async enviar(): Promise<void> {
-    const img = MessageMedia.fromFilePath(this.data.path);
+    const img = this.data.FromURL
+      ? await MessageMedia.fromUrl(this.data.path)
+      : MessageMedia.fromFilePath(this.data.path);
     await this.bot?.sendMessage(this.data.para, img, {
       caption: this.data.mensagem,
       sendMediaAsDocument: this.data.AsDocument,

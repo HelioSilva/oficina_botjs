@@ -5,8 +5,6 @@ import {
   EnvioMensagemTexto,
   EnvioMensagemVideo,
 } from "./entidades/useCases";
-import { PATH_MEDIA } from "./utils/constantes";
-import { resolve } from "path";
 
 export {
   BotJS,
@@ -14,6 +12,4 @@ export {
   EnvioMensagemImagem,
   EnvioMensagemTexto,
   EnvioMensagemVideo,
-  PATH_MEDIA,
-  resolve,
 };
