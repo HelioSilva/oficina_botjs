@@ -3,6 +3,7 @@ import Qrcode from "qrcode-terminal";
 import { IMensagemRecebida } from "./interfaces/IMensagemRecebida";
 import { IEnvioMensagem } from "./interfaces/IEnvioMensagem";
 import { PATH_CHROME } from "../utils/constantes";
+import { IProjeto } from "./interfaces/IProjeto";
 
 function delay(timeout: number) {
   return new Promise((resolve) => {
@@ -13,7 +14,13 @@ function delay(timeout: number) {
 export class BotJS {
   private listaMensagens: IMensagemRecebida[] = [];
   private bot: Client;
-  constructor(private params: { timeout?: number; useChrome?: boolean }) {
+  constructor(
+    private params: {
+      timeout?: number;
+      useChrome?: boolean;
+      projeto?: IProjeto;
+    }
+  ) {
     this.bot = this.criarBot();
     this.inicializar();
   }
@@ -33,12 +40,14 @@ export class BotJS {
       // alguma coisa
       if (this.listaMensagens.length > 0) {
         const msg = this.listaMensagens.shift();
-        if (msg?.message.body.startsWith("!canal")) {
-          msg?.message.reply("Oficina da Programação");
+        if (msg && this.params.projeto) {
+          const response = await this.params.projeto.mensagemRecebida(msg);
+          if (response) {
+            this.enviar(response);
+          }
         }
       }
       console.log("Caixa de mensagem: " + this.listaMensagens.length);
-
       await delay(this.params.timeout ? this.params.timeout : 5000);
     }
   }
@@ -62,7 +71,6 @@ export class BotJS {
         from: message.from,
         message,
       });
-      console.log(this.listaMensagens.length);
       console.log(
         `Voce recebeu uma mensagem de ${message.from}: ${message.body}`
       );
