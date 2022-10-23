@@ -1,14 +1,18 @@
 {
-  "name": "ChatBOT_Zero_Avancado",
-  "version": "1.0.0",
-  "description": "",
+  "name": "oficina_botjs",
+  "version": "1.0.3",
+  "description": "Whatsapp BOT",
   "main": "./dist/main.js",
+  "types": "dist/main.d.ts",
   "scripts": {
+    "build": "tsc",
+    "prepublish": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only  src/main.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
+    "prod": "node ./dist/main.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Helio Silva <tsi.heliosilva@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "qrcode-terminal": "^0.12.0",
