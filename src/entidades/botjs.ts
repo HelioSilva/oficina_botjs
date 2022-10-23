@@ -19,6 +19,7 @@ export class BotJS {
       timeout?: number;
       useChrome?: boolean;
       projeto?: IProjeto;
+      pathSession?: string;
     }
   ) {
     this.bot = this.criarBot();
@@ -47,7 +48,6 @@ export class BotJS {
           }
         }
       }
-      console.log("Caixa de mensagem: " + this.listaMensagens.length);
       await delay(this.params.timeout ? this.params.timeout : 5000);
     }
   }
@@ -57,7 +57,9 @@ export class BotJS {
       puppeteer: {
         executablePath: this.params.useChrome ? PATH_CHROME : undefined,
       },
-      authStrategy: new LocalAuth(),
+      authStrategy: new LocalAuth({
+        dataPath: this.params.pathSession ? this.params.pathSession : undefined,
+      }),
     });
   }
 
