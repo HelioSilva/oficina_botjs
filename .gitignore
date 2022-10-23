@@ -143,9 +143,6 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 
-.*
-
-# arquivos de media
-src/media/*
+.ww*
 
 package-lock.json
