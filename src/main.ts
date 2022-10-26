@@ -6,6 +6,12 @@ import {
   EnvioMensagemVideo,
 } from "./entidades/useCases";
 
+import {
+  IEnvioMensagem,
+  IMensagemRecebida,
+  IProjeto,
+} from "./entidades/interfaces";
+
 export {
   BotJS,
   EnvioMensagemAudio,
