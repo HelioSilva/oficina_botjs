@@ -10,7 +10,6 @@ function delay(timeout: number) {
     setTimeout(resolve, timeout);
   });
 }
-
 export class BotJS {
   private listaMensagens: IMensagemRecebida[] = [];
   private bot: Client;
