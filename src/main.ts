@@ -18,4 +18,7 @@ export {
   EnvioMensagemImagem,
   EnvioMensagemTexto,
   EnvioMensagemVideo,
+  IEnvioMensagem,
+  IMensagemRecebida,
+  IProjeto,
 };
