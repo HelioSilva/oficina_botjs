@@ -1,5 +1,5 @@
 import { Client } from "whatsapp-web.js";
-import { IEnvioMensagem } from "../interfaces/IEnvioMensagem";
+import { IEnvioMensagem } from "../interfaces";
 
 export abstract class BaseEnvio implements IEnvioMensagem {
   protected bot: Client | undefined;
