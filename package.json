@@ -1,12 +1,13 @@
 {
   "name": "oficina_botjs",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Whatsapp BOT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "scripts": {
     "build": "tsc",
     "pre-publish": "tsc && npm --no-git-tag-version version patch",
+    "pre-publish-minor": "tsc && npm --no-git-tag-version version minor",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn --transpile-only src/main.ts",
     "prod": "node ./dist/main.js"
