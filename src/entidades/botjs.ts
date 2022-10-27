@@ -1,9 +1,7 @@
 import { Client, LocalAuth, Message } from "whatsapp-web.js";
 import Qrcode from "qrcode-terminal";
-import { IMensagemRecebida } from "./interfaces/IMensagemRecebida";
-import { IEnvioMensagem } from "./interfaces/IEnvioMensagem";
+import { IMensagemRecebida, IEnvioMensagem, IProjeto } from "./interfaces";
 import { PATH_CHROME } from "../utils/constantes";
-import { IProjeto } from "./interfaces/IProjeto";
 
 function delay(timeout: number) {
   return new Promise((resolve) => {
