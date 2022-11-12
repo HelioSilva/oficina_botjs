@@ -27,8 +27,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: 🚀 Install packages
         run: npm i
-      - name: 🚀 Compilers
-        run: npm run pre-publish
       - name: 🚀 publish
         run: npm publish --access public
         working-directory: ./
