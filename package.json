@@ -1,6 +1,6 @@
 {
   "name": "oficina_botjs",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Whatsapp BOT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
